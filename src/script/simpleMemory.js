@@ -169,12 +169,12 @@ if (initCheck()) {
             animateSections: true
         },
         homeTopImg: [
-            "https://cdn.jsdelivr.net/gh/engureguo/Cnblogs-Theme-SimpleMemory@1.1/img/webp/home_top_bg.webp"
+            "https://cdn.jsdelivr.net/gh/engureguo/Cnblogs-Theme-SimpleMemory@master/img/webp/home_top_bg.webp"
         ],
         homeBannerText: "",
         homeBannerTextType: "jinrishici",
         essayTopImg: [
-            "https://cdn.jsdelivr.net/gh/engureguo/Cnblogs-Theme-SimpleMemory@1.1/img/webp/nothome_top_bg.webp"
+            "https://cdn.jsdelivr.net/gh/engureguo/Cnblogs-Theme-SimpleMemory@master/img/webp/nothome_top_bg.webp"
         ],
         essayCodeHighlightingType: 'cnblogs',
         essayCodeHighlighting: '',
