@@ -81,14 +81,14 @@ if (initCheck()) {
         '        <i class="scroll-down-icon iconfont icon-fanhui"></i>' +
         '    </a>' +
         '</div>' +
-        '<div id="loading"></div>'  +
+        '<div id="loading"></div>' +
         '<div id="bottomProgressBar"></div>' +
         '<div id="rightMenu"></div>';
 
     window.cnblogsConfigDefault = {
         GhUserName: 'engureguo',
         GhRepositories: 'Cnblogs-Theme-SimpleMemory',
-        GhVersions: 'v1.3.0',
+        GhVersions: 'master',
         CnVersions: "",
         blogUser: "",
         blogAvatar: "",
@@ -195,7 +195,7 @@ if (initCheck()) {
         bottomBlogroll: [],
         bottomText: {
             iconFont: {
-                icon:  "icon-xl",
+                icon: "icon-xl",
                 color: "red",
                 fontSize: "16px"
             },
@@ -227,48 +227,52 @@ if (initCheck()) {
     window.cnblogsConfigDefault.hook = {
 
         // loading 开始前
-        beforeLoading: function (loading) {
+        beforeLoading: function(loading) {
             // console.log('beforeLoading');
         },
 
         // loading 结束后
-        afterLoading: function (e, loading) {
+        afterLoading: function(e, loading) {
             // console.log('afterLoading');
         },
 
         // 页面标签变化
-        pageLabelChanges: function (e, text) {
+        pageLabelChanges: function(e, text) {
             // console.log('pageLabelChanges');
         },
 
         // 渲染代码开始前
-        beforeCodeHighlighting: function (e) {
+        beforeCodeHighlighting: function(e) {
             // console.log('beforeCodeHighlighting');
         },
 
         // 渲染代码结束后
-        afterCodeHighlighting: function (e) {
+        afterCodeHighlighting: function(e) {
             // console.log('afterCodeHighlighting');
         },
 
         // 日夜间模式设置
-        dayNightControl: function (e, type) {
+        dayNightControl: function(e, type) {
             // console.log('dayNightControl');
         },
 
         // 页面初始化结束
-        pageInitEnd: function (e) {
+        pageInitEnd: function(e) {
             // console.log('pageInitEnd');
         },
     };
 
-    window.cnblogsConfig = $.extend( true, window.cnblogsConfigDefault, window.cnblogsConfig );
+    window.cnblogsConfig = $.extend(true, window.cnblogsConfigDefault, window.cnblogsConfig);
     getVersionConfig();
 
 } else {
 
     $('a[name="top"]').text("SimpleMemory：基础配置有误，请阅读文档，检查配置！").css({
-        'display': 'block', 'text-align': 'center', 'padding-top': '45vh', 'font-size': '20px', 'color': '#333'
+        'display': 'block',
+        'text-align': 'center',
+        'padding-top': '45vh',
+        'font-size': '20px',
+        'color': '#333'
     });
 }
 
@@ -279,7 +283,7 @@ function initCheck() {
     var baseStyle = $('#mobile-style').attr('href');
     if (typeof baseStyle != 'undefined') {
         var bt = baseStyle.split('/');
-        if($.inArray('SimpleMemory', bt) !== -1) {
+        if ($.inArray('SimpleMemory', bt) !== -1) {
             return true;
         }
     }
@@ -299,40 +303,34 @@ function getVersionConfig() {
             url: url,
             dataType: "text",
             async: false,
-            success: function(conf)
-            {
+            success: function(conf) {
                 window.themeVersion = conf ? JSON.parse(conf) : false;
                 window.themeVersion && setConfVersion();
             }
         });
 
-    } else if(window.cnblogsConfig.GhUserName === 'engureguo') {
+    } else if (window.cnblogsConfig.GhUserName === 'engureguo') {
         window.themeVersion = [
             [
                 "v1.1.6",
                 "d8adfb50252062f658350bda29d7145f5eff0b80"
-            ]
-            ,
+            ],
             [
                 "v1.1.8",
                 "461aab69de17a84f0af9ff0c326bfcb94438b06c"
-            ]
-            ,
+            ],
             [
                 "v1.2.2",
                 "08eab99303d7c463a495adabd8feccc784a8507d"
-            ]
-            ,
+            ],
             [
                 "v1.2.3",
                 "36901bf16e2aa3656d4e6f78d44486273b0b8972"
-            ]
-            ,
+            ],
             [
                 "v1.2.4",
                 "9354db2147c11fc56cfe02a502f1f8229332fc2f"
-            ]
-            ,
+            ],
             [
                 "v1.2.5",
                 "4d744f980758500078df349520472e3b360fb841"
@@ -355,9 +353,10 @@ function getVersionConfig() {
 
     function getEndConfVal(thisGhVersion) {
         var endVal = '';
-        window.themeVersion && $.each(window.themeVersion, function (i) {
+        window.themeVersion && $.each(window.themeVersion, function(i) {
             if (window.themeVersion[i][0] === thisGhVersion) {
-                endVal = window.themeVersion[i][1]; return false;
+                endVal = window.themeVersion[i][1];
+                return false;
             }
         });
         if (endVal === '') {
@@ -372,19 +371,20 @@ function getVersionConfig() {
 function init() {
 
     // set sidebar html
-    var url = window.location.href,tmp = [];
+    var url = window.location.href,
+        tmp = [];
     tmp = url.split("/");
     var user = tmp[3];
-    var navListHtml = '<li><a href="https://www.cnblogs.com/'+user+'/" target="_self"><i class="iconfont icon-homepage_fill"></i>首页</a></li>' +
-        '<li><a href="https://msg.cnblogs.com/send/'+user+'" target="_blank"><i class="iconfont icon-zhifeiji"></i>联系</a></li>' +
-        '<li><a href="javascript:void(0)" onclick="$(\'#blog_nav_rss\').trigger(\'click\');" data-rss="https://www.cnblogs.com/'+user+'/rss/"><i class="iconfont icon-qinmifu"></i>订阅</a></li>' +
+    var navListHtml = '<li><a href="https://www.cnblogs.com/' + user + '/" target="_self"><i class="iconfont icon-homepage_fill"></i>首页</a></li>' +
+        '<li><a href="https://msg.cnblogs.com/send/' + user + '" target="_blank"><i class="iconfont icon-zhifeiji"></i>联系</a></li>' +
+        '<li><a href="javascript:void(0)" onclick="$(\'#blog_nav_rss\').trigger(\'click\');" data-rss="https://www.cnblogs.com/' + user + '/rss/"><i class="iconfont icon-qinmifu"></i>订阅</a></li>' +
         '<li><a href="https://i.cnblogs.com/" target="_blank"><i class="iconfont icon-setup_fill"></i>管理</a></li>';
 
     var menuNavList = window.cnblogsConfig.menuNavList;
     if (menuNavList.length > 0) {
-        $.each(menuNavList, function (i) {
+        $.each(menuNavList, function(i) {
             let iconClass = menuNavList[i].length > 2 ? menuNavList[i][2] : "icon-qianzishenhe";
-            navListHtml += '<li><a href="'+(menuNavList[i][1])+'" target="_blank"><i class="iconfont '+iconClass+'"></i>'+(menuNavList[i][0])+'</a></li>';
+            navListHtml += '<li><a href="' + (menuNavList[i][1]) + '" target="_blank"><i class="iconfont ' + iconClass + '"></i>' + (menuNavList[i][0]) + '</a></li>';
         });
     }
 
@@ -395,10 +395,10 @@ function init() {
     if (window.cnblogsConfig.blogUser === "") window.cnblogsConfig.blogUser = user;
 
     // start cache
-    $.ajaxSetup({cache: true});
+    $.ajaxSetup({ cache: true });
 
     // load loadingJs
-    $.getScript(getJsDelivrUrl('loading.js'), function () {
+    $.getScript(getJsDelivrUrl('loading.js'), function() {
 
         // Loading start
         window.cnblogsConfig.hook.beforeLoading(pageLoading);
@@ -406,13 +406,14 @@ function init() {
         pageLoading.initSpinner();
         pageLoading.spinner.init(pageLoading.spring, true);
 
-        $.getScript(getJsDelivrUrl('lib/jquery.mCustomScrollbar.min.js'), function () {
-            $.getScript(getJsDelivrUrl('lib/require.min.js'), function () {
-                $.getScript(getJsDelivrUrl('config.js'), function () {
+        $.getScript(getJsDelivrUrl('lib/jquery.mCustomScrollbar.min.js'), function() {
+            $.getScript(getJsDelivrUrl('lib/require.min.js'), function() {
+                $.getScript(getJsDelivrUrl('config.js'), function() {
                     var staticResource = [
                         // 'optiscroll', 'ToProgress', 'rotate',
                         'optiscroll_ToProgress_rotate',
-                        'snapSvg', 'classie', 'main4', 'tools'];
+                        'snapSvg', 'classie', 'main4', 'tools'
+                    ];
                     require(staticResource, function() {
                         require(['base'], function() {
                             (new Base).init();
@@ -427,24 +428,33 @@ function init() {
 // get file url
 function getJsDelivrUrl(file, directory) {
     file = setFileNameMin(file, directory);
-    return 'https://cdn.jsdelivr.net/gh/'+(window.cnblogsConfig.GhUserName)+'/'+(window.cnblogsConfig.GhRepositories)+'@'+(window.cnblogsConfig.GhVersions)+'/' + (file ? file : '');
+    return 'https://cdn.jsdelivr.net/gh/' + (window.cnblogsConfig.GhUserName) + '/' + (window.cnblogsConfig.GhRepositories) + '@' + (window.cnblogsConfig.GhVersions) + '/' + (file ? file : '');
 }
 
 // optimization file name
 function setFileNameMin(file, directory) {
     if (typeof file == 'undefined') return '';
-    var suffix  = null,fileArr = file.split('.');
-    if (fileArr.length > 0 && $.inArray(fileArr[(fileArr.length -1)], ['js', 'css']) !== -1) {
+    var suffix = null,
+        fileArr = file.split('.');
+    if (fileArr.length > 0 && $.inArray(fileArr[(fileArr.length - 1)], ['js', 'css']) !== -1) {
         suffix = fileArr.pop();
         switch (suffix) {
-            case 'js':directory = 'script';break;
-            case 'css':directory = 'style';break;
+            case 'js':
+                directory = 'script';
+                break;
+            case 'css':
+                directory = 'style';
+                break;
         }
     } else {
         if (typeof directory == 'undefined') return '';
         switch (directory) {
-            case 'js':directory = 'script';break;
-            case 'css':directory = 'style';break;
+            case 'js':
+                directory = 'script';
+                break;
+            case 'css':
+                directory = 'style';
+                break;
         }
     }
     file.search('.min') === -1 && fileArr.push('min');
